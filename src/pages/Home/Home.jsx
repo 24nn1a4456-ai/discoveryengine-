@@ -1,137 +1,397 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+  const navigate = useNavigate();
+  const [searchPrompt, setSearchPrompt] = useState('');
+
+  const samplePrompts = [
+    '🎧 Wireless noise-canceling headphones for travel under $200',
+    '💻 Lightweight gaming laptop with long battery life',
+    '☕ Compact espresso machine for beginner home baristas',
+  ];
+
   const categories = [
-    {
-      title: 'Electronics & Tech',
-      count: '450k+ items',
-      icon: (
-        <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-    },
-    {
-      title: 'Home & Kitchen',
-      count: '320k+ items',
-      icon: (
-        <svg className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-      ),
-    },
-    {
-      title: 'Fashion & Apparel',
-      count: '610k+ items',
-      icon: (
-        <svg className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-        </svg>
-      ),
-    },
-    {
-      title: 'Smart Gadgets',
-      count: '180k+ items',
-      icon: (
-        <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-    },
+    { icon: '💻', name: 'Electronics & Tech', items: '450k+ items' },
+    { icon: '🏠', name: 'Home & Kitchen', items: '320k+ items' },
+    { icon: '👟', name: 'Fashion & Apparel', items: '610k+ items' },
+    { icon: '⚡', name: 'Smart Gadgets', items: '180k+ items' },
   ];
 
   const features = [
     {
+      icon: '💬',
       title: 'Conversational Search',
       desc: 'Describe what you need in plain English instead of fighting complex side-bar filters.',
-      icon: (
-        <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
-      ),
     },
     {
+      icon: '⚖️',
       title: 'Instant Side-by-Side',
       desc: 'Automatically summarize reviews, specs, and prices across top platforms.',
-      icon: (
-        <svg className="w-6 h-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
-      ),
     },
     {
+      icon: '🎯',
       title: '99.4% Match Accuracy',
       desc: 'Our semantic AI matches products based on true context, budget, and preference.',
-      icon: (
-        <svg className="w-6 h-6 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
     },
   ];
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchPrompt.trim()) {
+      navigate(`/discover?query=${encodeURIComponent(searchPrompt)}`);
+    } else {
+      navigate('/discover');
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#08111f] text-white py-12 px-6 lg:px-12">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <div style={styles.container}>
+      <main style={styles.main}>
         
-        {/* ================= CATEGORIES SECTION ================= */}
+        {/* HERO SECTION */}
+        <section style={styles.heroSection}>
+          <div style={styles.taglineBadge}>✨ THE SMARTER WAY TO SHOP</div>
+          
+          <h1 style={styles.heroTitle}>
+            Find Exactly What You Want, <br />
+            <span style={styles.heroGradient}>Without the Effort.</span>
+          </h1>
+
+          <p style={styles.heroSub}>
+            Stop switching between dozens of tabs. Describe your ideal product in plain language and let AI curate the absolute best choices for you.
+          </p>
+
+          {/* INTERACTIVE AI SEARCH BAR */}
+          <form onSubmit={handleSearchSubmit} style={styles.searchBarContainer}>
+            <span style={{ fontSize: '18px', marginLeft: '6px' }}>🔍</span>
+            <input
+              type="text"
+              placeholder="e.g., Ergonomic office chair under $300 with lumbar support..."
+              value={searchPrompt}
+              onChange={(e) => setSearchPrompt(e.target.value)}
+              style={styles.searchInput}
+            />
+            <button type="submit" style={styles.searchBtn}>
+              Find Matches →
+            </button>
+          </form>
+
+          {/* SAMPLE PROMPT PILLS */}
+          <div style={styles.pillsRow}>
+            <span style={{ fontSize: '12px', color: '#64748b' }}>Try asking:</span>
+            {samplePrompts.map((prompt, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setSearchPrompt(prompt.replace(/^[^\s]+\s/, ''))}
+                style={styles.promptPill}
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* FEATURED CATEGORIES */}
         <section>
-          <h2 className="text-3xl font-extrabold text-center mb-8 tracking-tight">
-            Shop by Category
-          </h2>
+          <div style={styles.sectionHeader}>
+            <span style={styles.sectionTag}>EXPLORE DEPARTMENTS</span>
+            <h2 style={styles.sectionTitle}>Shop by Category</h2>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div style={styles.gridFour}>
             {categories.map((cat, idx) => (
-              <div
-                key={idx}
-                className="flex items-center gap-4 bg-[#0d1b2e] border border-white/5 p-5 rounded-2xl hover:border-cyan-400/30 hover:bg-[#11223a] transition-all duration-200 cursor-pointer group"
+              <div 
+                key={idx} 
+                style={styles.categoryCard}
+                onClick={() => navigate('/categories')}
               >
-                <div className="p-3 rounded-xl bg-white/5 group-hover:bg-cyan-400/10 transition-colors">
-                  {cat.icon}
-                </div>
+                <div style={styles.catIcon}>{cat.icon}</div>
                 <div>
-                  <h3 className="font-bold text-base text-white group-hover:text-cyan-400 transition-colors">
-                    {cat.title}
-                  </h3>
-                  <p className="text-xs text-gray-400 font-medium mt-0.5">
-                    {cat.count}
-                  </p>
+                  <h3 style={styles.catName}>{cat.name}</h3>
+                  <p style={styles.catItems}>{cat.items}</p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ================= WHY SHOP WITH SNAPCART ================= */}
-        <section className="text-center pt-8">
-          <span className="text-xs font-bold tracking-widest text-cyan-400 uppercase">
-            POWERED BY INTELLECTUAL AI
-          </span>
-          <h2 className="text-3xl font-extrabold text-white mt-2 mb-10 tracking-tight">
-            Why Shop With SnapCart?
-          </h2>
+        {/* CORE FEATURES GRID */}
+        <section>
+          <div style={styles.sectionHeader}>
+            <span style={styles.sectionTag}>POWERED BY INTELLECTUAL AI</span>
+            <h2 style={styles.sectionTitle}>Why Shop With Discovery Engine?</h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+          <div style={styles.gridThree}>
             {features.map((feat, idx) => (
-              <div
-                key={idx}
-                className="bg-[#0d1b2e] border border-white/5 p-7 rounded-2xl space-y-4 hover:border-white/10 transition-all"
-              >
-                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center">
-                  {feat.icon}
-                </div>
-                <h3 className="text-lg font-bold text-white">
-                  {feat.title}
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed font-normal">
-                  {feat.desc}
-                </p>
+              <div key={idx} style={styles.featureCard}>
+                <div style={styles.featureIcon}>{feat.icon}</div>
+                <h3 style={styles.featureTitle}>{feat.title}</h3>
+                <p style={styles.featureDesc}>{feat.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-      </div>
+        {/* CALL TO ACTION BANNER */}
+        <section style={styles.ctaBanner}>
+          <div style={{ fontSize: '32px' }}>🤖</div>
+          <h2 style={styles.ctaTitle}>Need a personal shopping assistant?</h2>
+          <p style={styles.ctaSub}>
+            Chat with our AI Assistant directly to ask questions, compare specs, or get personalized recommendations in real-time.
+          </p>
+          <button 
+            style={styles.ctaBtn}
+            onClick={() => navigate('/ai-assistant')}
+          >
+            Launch AI Assistant →
+          </button>
+        </section>
+
+      </main>
+
+      {/* FOOTER */}
+      <footer style={styles.footer}>
+        <div style={styles.footerContent}>
+          <div>
+            <h3 style={{ color: '#22d3ee', margin: '0 0 4px 0', fontSize: '18px' }}>Discovery Engine</h3>
+            <p style={{ color: '#64748b', fontSize: '12px', margin: 0 }}>The smarter way to shop.</p>
+          </div>
+          <p style={{ color: '#64748b', fontSize: '12px', margin: 0 }}>
+            © 2026 Discovery Engine. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
+
+// INLINE STYLES ENSURING STABILITY, CLEAN SPACING & RESPONSIVENESS
+const styles = {
+  container: {
+    backgroundColor: '#060b13',
+    color: '#f8fafc',
+    minHeight: '100vh',
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+  },
+  main: {
+    maxWidth: '1100px',
+    margin: '0 auto',
+    padding: '60px 24px 80px 24px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '90px',
+  },
+  heroSection: {
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '22px',
+    paddingTop: '20px',
+  },
+  taglineBadge: {
+    backgroundColor: 'rgba(8, 51, 68, 0.8)',
+    border: '1px solid rgba(34, 211, 238, 0.4)',
+    color: '#22d3ee',
+    padding: '6px 16px',
+    borderRadius: '20px',
+    fontSize: '12px',
+    fontWeight: '700',
+    letterSpacing: '0.5px',
+  },
+  heroTitle: {
+    fontSize: '52px',
+    fontWeight: '800',
+    lineHeight: '1.15',
+    margin: 0,
+    letterSpacing: '-1px',
+  },
+  heroGradient: {
+    background: 'linear-gradient(to right, #22d3ee, #3b82f6)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+  },
+  heroSub: {
+    color: '#94a3b8',
+    maxWidth: '620px',
+    fontSize: '16px',
+    lineHeight: '1.6',
+    margin: 0,
+  },
+  searchBarContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#0f172a',
+    border: '1px solid rgba(34, 211, 238, 0.3)',
+    borderRadius: '16px',
+    padding: '8px 8px 8px 16px',
+    width: '100%',
+    maxWidth: '680px',
+    gap: '10px',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
+    marginTop: '10px',
+  },
+  searchInput: {
+    backgroundColor: 'transparent',
+    border: 'none',
+    color: '#f8fafc',
+    fontSize: '14px',
+    width: '100%',
+    outline: 'none',
+  },
+  searchBtn: {
+    backgroundColor: '#06b6d4',
+    color: '#020617',
+    border: 'none',
+    padding: '12px 22px',
+    borderRadius: '10px',
+    fontWeight: '700',
+    fontSize: '13px',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+  },
+  pillsRow: {
+    display: 'flex',
+    gap: '8px',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    maxWidth: '750px',
+  },
+  promptPill: {
+    backgroundColor: 'rgba(15, 23, 42, 0.6)',
+    border: '1px solid #1e293b',
+    color: '#94a3b8',
+    padding: '6px 12px',
+    borderRadius: '20px',
+    fontSize: '12px',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+  },
+  sectionHeader: {
+    textAlign: 'center',
+    marginBottom: '32px',
+  },
+  sectionTag: {
+    color: '#22d3ee',
+    fontSize: '12px',
+    fontWeight: '700',
+    letterSpacing: '1px',
+  },
+  sectionTitle: {
+    fontSize: '28px',
+    fontWeight: '700',
+    margin: '6px 0 0 0',
+  },
+  gridFour: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gap: '18px',
+  },
+  categoryCard: {
+    backgroundColor: 'rgba(15, 23, 42, 0.5)',
+    border: '1px solid #1e293b',
+    borderRadius: '16px',
+    padding: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '14px',
+    cursor: 'pointer',
+    transition: 'transform 0.2s ease',
+  },
+  catIcon: {
+    fontSize: '28px',
+    backgroundColor: '#030712',
+    padding: '10px',
+    borderRadius: '12px',
+  },
+  catName: {
+    fontSize: '15px',
+    fontWeight: '700',
+    margin: 0,
+  },
+  catItems: {
+    color: '#64748b',
+    fontSize: '12px',
+    margin: '2px 0 0 0',
+  },
+  gridThree: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '24px',
+  },
+  featureCard: {
+    backgroundColor: 'rgba(15, 23, 42, 0.4)',
+    border: '1px solid #1e293b',
+    borderRadius: '18px',
+    padding: '28px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+  },
+  featureIcon: {
+    fontSize: '26px',
+  },
+  featureTitle: {
+    fontSize: '18px',
+    fontWeight: '700',
+    margin: 0,
+  },
+  featureDesc: {
+    color: '#94a3b8',
+    fontSize: '13px',
+    lineHeight: '1.6',
+    margin: 0,
+  },
+  ctaBanner: {
+    backgroundColor: 'rgba(15, 23, 42, 0.8)',
+    border: '1px solid rgba(34, 211, 238, 0.25)',
+    borderRadius: '24px',
+    padding: '44px 24px',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '14px',
+  },
+  ctaTitle: {
+    fontSize: '26px',
+    fontWeight: '700',
+    margin: 0,
+  },
+  ctaSub: {
+    color: '#94a3b8',
+    fontSize: '14px',
+    maxWidth: '520px',
+    margin: 0,
+    lineHeight: '1.5',
+  },
+  ctaBtn: {
+    backgroundColor: '#06b6d4',
+    color: '#020617',
+    border: 'none',
+    padding: '12px 28px',
+    borderRadius: '12px',
+    fontWeight: '700',
+    fontSize: '14px',
+    cursor: 'pointer',
+    marginTop: '6px',
+  },
+  footer: {
+    borderTop: '1px solid #1e293b',
+    backgroundColor: '#030712',
+    padding: '30px 24px',
+  },
+  footerContent: {
+    maxWidth: '1100px',
+    margin: '0 auto',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: '16px',
+  },
+};
