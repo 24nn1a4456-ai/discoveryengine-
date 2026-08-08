@@ -18,7 +18,7 @@ function Navbar() {
     about: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=64&q=80",
   };
 
-  // Navigation Items with associated image icons
+  // Navigation Items
   const navItems = [
     { name: "Home", path: "/", icon: icons.home },
     { name: "Discover", path: "/discover", icon: icons.discover },
@@ -41,20 +41,19 @@ function Navbar() {
     <nav className="sticky top-0 z-50 h-16 border-b border-white/10 bg-[#08111f]/95 backdrop-blur-xl">
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
 
-        {/* ================= BRAND LOGO WITH IMAGE ICON ================= */}
+        {/* ================= BRAND LOGO (SNAPCART) ================= */}
         <Link to="/" className="flex shrink-0 items-center gap-2.5">
           <img
             src={icons.brand}
-            alt="Choose Wisely Icon"
+            alt="SnapCart Icon"
             className="h-7 w-7 rounded-md object-cover ring-1 ring-cyan-400/30"
           />
-          <span className="text-lg font-bold tracking-tight text-white">
-            Choose <span className="text-cyan-400">Wisely</span>
+          <span className="text-xl font-extrabold tracking-tight text-white">
+            Snap<span className="text-cyan-400">Cart</span>
           </span>
         </Link>
 
-
-        {/* ================= NAVIGATION TABS WITH IMAGE ICONS ================= */}
+        {/* ================= NAVIGATION TABS ================= */}
         <div className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -73,7 +72,7 @@ function Navbar() {
                   src={item.icon}
                   alt={item.name}
                   className={`h-4 w-4 rounded-sm object-cover transition-opacity duration-200 ${
-                    isActive ? "opacity-100 ring-1 ring-cyan-400" : "opacity-70 group-hover:opacity-100"
+                    isActive ? "opacity-100 ring-1 ring-cyan-400" : "opacity-70"
                   }`}
                 />
                 <span>{item.name}</span>
@@ -86,7 +85,6 @@ function Navbar() {
             );
           })}
         </div>
-
 
         {/* ================= LOGOUT / LOGIN BUTTON ================= */}
         <button
