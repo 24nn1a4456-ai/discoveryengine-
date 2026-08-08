@@ -16,7 +16,6 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
       trim: true,
-      index: true,
       match: [
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
         'Please provide a valid email',
@@ -111,7 +110,6 @@ UserSchema.methods.getSignedJwtToken = function () {
   );
 };
 
-UserSchema.index({ email: 1 });
 UserSchema.index({ 'preferences.categories': 1 });
 
 module.exports = mongoose.model('User', UserSchema);
