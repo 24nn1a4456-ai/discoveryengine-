@@ -1,16 +1,65 @@
-# React + Vite
+# 🚀 Choose Wisely — AI Product Discovery Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Discover smarter. Compare better. Choose wisely.**
 
-Currently, two official plugins are available:
+Choose Wisely is an AI-powered product discovery and shopping assistant built to help users find products that actually match their needs instead of simply browsing through endless product listings.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The frontend provides a modern shopping experience where users can search using natural language, explore categories, compare products, get AI-powered recommendations, and interact with an AI shopping assistant.
 
-## React Compiler
+The project is designed with a strong focus on **user experience, intelligent product discovery, personalization, and clean navigation**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📌 Table of Contents
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [About the Project](#-about-the-project)
+- [Problem We Are Solving](#-problem-we-are-solving)
+- [Our Solution](#-our-solution)
+- [Key Features](#-key-features)
+- [Frontend Pages](#-frontend-pages)
+- [Navigation Flow](#-navigation-flow)
+- [How Product Discovery Works](#-how-product-discovery-works)
+- [AI-Powered Experience](#-ai-powered-experience)
+- [Personalized Recommendations](#-personalized-recommendations)
+- [Complete the Look](#-complete-the-look)
+- [Product Comparison](#-product-comparison)
+- [Frontend Architecture](#-frontend-architecture)
+- [Project Structure](#-project-structure)
+- [Technology Stack](#-technology-stack)
+- [UI and Design](#-ui-and-design)
+- [Responsive Design](#-responsive-design)
+- [Routing](#-routing)
+- [Component Structure](#-component-structure)
+- [State Management](#-state-management)
+- [Backend Integration](#-backend-integration)
+- [Getting Started](#-getting-started)
+- [Installation](#-installation)
+- [Running the Project](#-running-the-project)
+- [Build for Production](#-build-for-production)
+- [Environment Variables](#-environment-variables)
+- [Development Workflow](#-development-workflow)
+- [Future Improvements](#-future-improvements)
+- [Hackathon Highlights](#-hackathon-highlights)
+- [Project Goals](#-project-goals)
+- [Conclusion](#-conclusion)
+
+---
+
+# 🧠 About the Project
+
+Online shopping has become extremely convenient, but finding the **right** product is still difficult.
+
+A user may know what they want:
+
+> "I need a gaming laptop under $1000 with good graphics and enough RAM."
+
+But traditional shopping websites often force the user to manually apply filters, compare specifications, read reviews, and switch between multiple products.
+
+**Choose Wisely** changes this experience.
+
+Instead of expecting the user to understand product filters, the platform allows them to describe what they need naturally.
+
+For example:
+
+```text
+Gaming laptop under $1000 with RTX graphics
