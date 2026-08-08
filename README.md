@@ -1,5 +1,4 @@
 SnapCart — AI-Powered Product Discovery
-
 SnapCart is a modern AI-powered shopping discovery platform designed to help users find the right products without spending hours comparing products, prices, specifications, ratings, and reviews.
 
 Instead of relying only on traditional keyword-based search, SnapCart allows users to describe what they are looking for in natural language. The platform understands the user's intent and presents relevant products based on their requirements.
@@ -274,50 +273,6 @@ Frontend Architecture
 
 The frontend is organized into reusable pages, components and data modules.
 
-A simplified structure looks like:
-
-frontend/
-│
-├── public/
-│
-├── src/
-│   │
-│   ├── components/
-│   │   ├── navbar/
-│   │   │   └── Navbar.jsx
-│   │   │
-│   │   ├── footer/
-│   │   │   └── Footer.jsx
-│   │   │
-│   │   └── ...
-│   │
-│   ├── pages/
-│   │   ├── Home/
-│   │   │   └── Home.jsx
-│   │   │
-│   │   ├── Discover/
-│   │   │   └── Discover.jsx
-│   │   │
-│   │   ├── Categories/
-│   │   │   └── CategoriesPage.jsx
-│   │   │
-│   │   ├── AIAssistant/
-│   │   │   └── AIAssistant.jsx
-│   │   │
-│   │   ├── About/
-│   │   │   └── About.jsx
-│   │   │
-│   │   └── Login/
-│   │       └── Login.jsx
-│   │
-│   ├── data/
-│   │   └── products.js
-│   │
-│   ├── App.jsx
-│   └── main.jsx
-│
-├── package.json
-└── README.md
 
 The exact folder structure may differ depending on the current implementation, but the application follows the same general separation of pages, reusable components and data.
 
@@ -338,7 +293,36 @@ Conditional rendering
 Lists and mapping
 Component reuse
 React Router
-
+                         SnapCart
+                            │
+                            ▼
+                         App.jsx
+                            │
+                    React Router
+                            │
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
+          ▼                 ▼                 ▼
+        Home            Discover          Categories
+          │                 │                 │
+          │                 ▼                 │
+          │          Product Search           │
+          │                 │                 │
+          │          ┌──────┴──────┐          │
+          │          ▼             ▼          │
+          │      Products      AI Ranking     │
+          │                        │          │
+          │                        ▼          │
+          │                 Recommendations   │
+          │                                   │
+          └──────────────┬────────────────────┘
+                         │
+              ┌──────────┴──────────┐
+              ▼                     ▼
+        AI Assistant              About
+              │
+              ▼
+       Shopping Guidance
 React Router is used for navigation between pages.
 
 Main routes include:
