@@ -1,0 +1,10 @@
+{
+  "name": "discovery-engine-seeds",
+  "version": "1.0.0",
+  "description": "Seed scripts for DiscoveryEngine",
+  "main": "seed.js",
+  "scripts": {
+    "seed": "node seed.js"
+  },
+  "dependencies": {}
+}
